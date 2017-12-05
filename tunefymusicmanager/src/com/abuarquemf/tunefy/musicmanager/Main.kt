@@ -4,15 +4,17 @@ import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.stage.Stage
 
 class Main : Application() {
 
     override fun start(primaryStage: Stage) {
         try {
-            val root = FXMLLoader.load<Parent>(javaClass.getResource("layouts/main_screen.fxml"))
+            val root = FXMLLoader.load<Parent>(javaClass.getResource("layouts/main_layout.fxml"))
             primaryStage.scene = Scene(root)
             primaryStage.title = Main.APP_NAME
+            primaryStage.isResizable = false
             primaryStage.isResizable = false
             primaryStage.show()
         } catch (e: Exception) {
