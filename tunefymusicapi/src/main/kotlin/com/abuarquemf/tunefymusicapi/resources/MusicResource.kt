@@ -9,7 +9,9 @@ import java.util.*
 @RequestMapping(value = "/tunefymusicapi")
 class MusicResource(val musicRepository: MusicRepository) {
 
-
+    @GetMapping
+    @RequestMapping(value = "/music/{id}")
+    fun getMusic(@PathVariable id: Long): Music = musicRepository.findOne(id)
 
     @GetMapping
     @RequestMapping(value = "/band/{band}")
@@ -31,5 +33,24 @@ class MusicResource(val musicRepository: MusicRepository) {
                 music.musicResource, Date().getTime() / 1000)
         musicRepository.save(validMusic)
         return validMusic
+    }
+
+    @PutMapping
+    @RequestMapping(value = "/update")
+    fun updateMusic(@RequestBody music: Music): Music {
+        musicRepository.save(music)
+        return music
+    }
+
+    /**
+     * It'll delete music with given id and
+     * should return an empty object as response.
+     *
+     */
+    @DeleteMapping
+    @RequestMapping(value = "/delete/{id}")
+    fun deleteMusic(@PathVariable id: Long): Music? {
+        musicRepository.delete(id)
+        return Music()
     }
 }
