@@ -47,23 +47,6 @@ class ManagerController {
     @FXML
     private lateinit var reportText: Text
 
-    @FXML
-    fun signOutAction(event: Event) {
-        try {
-            (event.source as Node).scene.window.hide()
-            val mainSource = FXMLLoader.load<Parent>(javaClass
-                    .getResource("../layouts/main_layout.fxml"))
-            val mainStage = Stage()
-            mainStage.icons.add(Image(javaClass.getResourceAsStream("../images/icon.png")))
-            mainStage.title = Main.APP_NAME
-            mainStage.scene = Scene(mainSource)
-            mainStage.isResizable = false
-            mainStage.show()
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-        }
-    }
-
     private var musicName: String? = null
     private var bandName: String? = null
 
@@ -85,6 +68,23 @@ class ManagerController {
      */
     fun onSetupGUIManager() {
         //TODO retrieve users and tune counter
+    }
+
+    @FXML
+    fun signOutAction(event: Event) {
+        try {
+            (event.source as Node).scene.window.hide()
+            val mainSource = FXMLLoader.load<Parent>(javaClass
+                    .getResource("../layouts/main_layout.fxml"))
+            val mainStage = Stage()
+            mainStage.icons.add(Image(javaClass.getResourceAsStream("../images/icon.png")))
+            mainStage.title = Main.APP_NAME
+            mainStage.scene = Scene(mainSource)
+            mainStage.isResizable = false
+            mainStage.show()
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
     }
 
     @FXML
@@ -135,7 +135,18 @@ class ManagerController {
 
     @FXML
     fun deleteTuneAction(event: Event) {
-
+        val givenId = idField.text
+        if(givenId.equals("")) {
+            infoLabel.text = "Fill id space."
+        } else {
+            val response = RestHandler.getInstance()
+                    .doPost(URLhandler.urlDELETE() + givenId,
+                            Music(givenId.toLong()))
+            defaultInfoLabel.text = "Tune was deleted"
+            var messageBuilder = StringBuilder()
+            messageBuilder.append("Tune with id $givenId was removed from database.")
+            reportText.text = messageBuilder.toString()
+        }
     }
 
     @FXML
