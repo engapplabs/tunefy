@@ -20,12 +20,31 @@ class ManagerController {
     @FXML
     private lateinit var infoLabel: Label
 
+    @FXML
+    private lateinit var usersCounter: Label
+
+    @FXML
+    private lateinit var tunesCounter: Label
+
+    @FXML
+    private lateinit var idField: TextField
+
     private var tunePath: String? = null
 
     private var isAvaiableToSendTune: Boolean = false
 
     fun initialize() {
         //TODO retrieve info from server aobut users and tunes
+        usersCounter.isVisible = false
+        tunesCounter.isVisible = false
+    }
+
+    /**
+     * It gets basic information to setup UI.
+     *
+     */
+    fun onSetupGUIManager() {
+        //TODO retrieve users and tune counter
     }
 
     @FXML
@@ -76,6 +95,10 @@ class ManagerController {
 
     @FXML
     fun updateTuneAction(event: Event) {
-
+        if(isAvaiableToSendTune) {
+            idField.isDisable = false
+        } else {
+            infoLabel.text = "Fill all spaces."
+        }
     }
 }
