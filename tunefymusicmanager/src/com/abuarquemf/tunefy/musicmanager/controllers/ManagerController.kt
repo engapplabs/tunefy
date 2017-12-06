@@ -1,6 +1,8 @@
 package com.abuarquemf.tunefy.musicmanager.controllers
 
+import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
+import com.abuarquemf.tunefy.musicmanager.models.Music
 import javafx.event.Event
 import javafx.fxml.FXML
 import javafx.scene.control.Label
@@ -21,10 +23,6 @@ class ManagerController {
     private var tunePath: String? = null
 
     private var isAvaiableToSendTune: Boolean = false
-
-    private var usersCounter: Int = 0
-
-    private var tunesCounter: Int = 0
 
     fun initialize() {
         //TODO retrieve info from server aobut users and tunes
@@ -59,7 +57,8 @@ class ManagerController {
     @FXML
     fun sendTuneAction(event: Event) {
         if(isAvaiableToSendTune) {
-            val response = RestHandler.getInstance().doGet("")
+            val response = RestHandler.getInstance().doPost(URLhandler.urlPOST(), Music())
+            println("LOG: " + response)
         } else {
             infoLabel.text = "Fill all spaces."
         }
