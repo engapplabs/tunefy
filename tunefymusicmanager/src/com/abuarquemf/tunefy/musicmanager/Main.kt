@@ -11,11 +11,11 @@ class Main : Application() {
 
     override fun start(primaryStage: Stage) {
         try {
+            primaryStage.icons.add(Image(Main.javaClass.getResourceAsStream("images/icon.png")))
             val root = FXMLLoader.load<Parent>(javaClass.getResource("layouts/main_layout.fxml"))
             primaryStage.scene = Scene(root)
             primaryStage.title = Main.APP_NAME
             primaryStage.isResizable = false
-            primaryStage.icons.add(Image(Main.javaClass.getResourceAsStream("images/icon.png")))
             primaryStage.show()
         } catch (e: Exception) {
             e.printStackTrace()
