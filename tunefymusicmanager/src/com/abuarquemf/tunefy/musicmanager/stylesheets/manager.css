@@ -1,0 +1,7 @@
+#rootManager {
+    -fx-background-color: darkgrey;
+}
+
+#internalMenu {
+    -fx-background-color: gray;
+}
