@@ -58,4 +58,19 @@ class ManagerController {
     fun sendTuneAction(event: Event) {
         //TODO send music to server
     }
+
+    @FXML
+    fun deleteTuneAction(event: Event) {
+
+    }
+
+    @FXML
+    fun queryTunesAction(event: Event) {
+
+    }
+
+    @FXML
+    fun updateTuneAction(event: Event) {
+
+    }
 }
