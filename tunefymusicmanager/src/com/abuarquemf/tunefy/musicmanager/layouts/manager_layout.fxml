@@ -15,60 +15,24 @@
         <URL value="@../stylesheets/manager.css" />
     </stylesheets>
    <children>
-      <VBox fx:id="internalMenu" layoutX="33.0" layoutY="69.0" prefHeight="233.0" prefWidth="365.0">
-         <children>
-            <TextField fx:id="musicNameField" alignment="CENTER" promptText="Music name">
-               <opaqueInsets>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="bandNameField" alignment="CENTER" promptText="Band name">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="374.0">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="picTuneButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#picTuneAction" prefHeight="26.0" prefWidth="367.0" text="Pic Tune">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="sendTuneButton" mnemonicParsing="false" onAction="#sendTuneAction" prefHeight="26.0" prefWidth="498.0" text="Send Tune">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
       <VBox fx:id="internalMenu" layoutX="409.0" layoutY="70.0" prefHeight="233.0" prefWidth="365.0">
          <children>
             <Label fx:id="defaultInfoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="402.0" text="Label">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Label>
          </children>
       </VBox>
-      <Label layoutX="49.0" layoutY="31.0" text="Add Tune">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
       <HBox fx:id="internalMenu" layoutX="36.0" layoutY="384.0" prefHeight="233.0" prefWidth="742.0">
          <children>
             <VBox alignment="CENTER" prefHeight="276.0" prefWidth="173.0">
                <children>
-                  <Button fx:id="updateTuneButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateTuneAction" prefHeight="26.0" prefWidth="167.0" text="Update Tune">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendTuneAction" prefHeight="26.0" prefWidth="151.0" text="Add Tune" />
+                  <Button fx:id="updateTuneButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateTuneAction" prefHeight="26.0" prefWidth="147.0" text="Update Tune">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -85,13 +49,53 @@
                   </Button>
                </children>
             </VBox>
+            <AnchorPane prefHeight="213.0" prefWidth="574.0">
+               <children>
+                  <Button fx:id="picTuneButton" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="164.0" mnemonicParsing="false" onAction="#picTuneAction" prefHeight="26.0" prefWidth="367.0" text="Pic Tune" />
+                  <TextField fx:id="musicNameField" alignment="CENTER" layoutX="117.0" layoutY="34.0" prefHeight="26.0" prefWidth="365.0" promptText="Music name">
+                     <opaqueInsets>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <TextField fx:id="bandNameField" alignment="CENTER" layoutX="116.0" layoutY="81.0" prefHeight="26.0" prefWidth="367.0" promptText="Band name" />
+                  <TextField fx:id="bandNameField1" alignment="CENTER" disable="true" layoutX="117.0" layoutY="121.0" prefHeight="26.0" prefWidth="367.0" promptText="Tune Id" />
+                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="6.0" prefHeight="16.0" prefWidth="365.0" textFill="#c90c0c" />
+               </children>
+            </AnchorPane>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </HBox>
       <Label layoutX="47.0" layoutY="345.0" text="Management">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
+      <AnchorPane fx:id="internalMenu" layoutX="41.0" layoutY="70.0" prefHeight="233.0" prefWidth="354.0">
+         <children>
+            <Label layoutX="14.0" layoutY="22.0" text="Users">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="50.0" text="Tunes available">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tunesCounter" layoutX="188.0" layoutY="50.0" prefHeight="21.0" prefWidth="134.0" text="9999999">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="usersCounter" layoutX="189.0" layoutY="20.0" prefHeight="21.0" prefWidth="134.0" text="9999999">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 
 </AnchorPane>
