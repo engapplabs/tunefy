@@ -6,4 +6,6 @@ data class Music(val name: String, val band: String,
     constructor() : this("music_name", "band_name", "music_resource", -505)
 
     constructor(name: String, band: String, musicResource: String) : this(name, band, musicResource, -505)
+
+    constructor(id: Long): this("music_name", "band_name", "music_resource", id)
 }
