@@ -151,7 +151,20 @@ class ManagerController {
 
     @FXML
     fun queryTunesAction(event: Event) {
-
+        val givenId = idField.text
+        if(givenId.equals("")) {
+            infoLabel.text = "Fill id space."
+        } else {
+            val response = RestHandler.getInstance()
+                    .doGet(URLhandler.urlGet() + givenId)
+            defaultInfoLabel.text = "Tune info"
+            val responseTune = Gson().fromJson<Music>(
+                    response, object: TypeToken<Music>(){}.type)
+            val messageBuilder = StringBuilder()
+            messageBuilder.append("Tune name: ${responseTune.name}")
+            messageBuilder.append("\nTune band: ${responseTune.band}")
+            reportText.text = messageBuilder.toString()
+        }
     }
 
     @FXML
