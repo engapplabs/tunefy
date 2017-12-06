@@ -1,5 +1,6 @@
 package com.abuarquemf.tunefy.musicmanager.controllers
 
+import com.abuarquemf.tunefy.musicmanager.Main
 import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
@@ -8,10 +9,16 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javafx.event.Event
 import javafx.fxml.FXML
+import javafx.fxml.FXMLLoader
+import javafx.scene.Node
+import javafx.scene.Parent
+import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
+import javafx.scene.image.Image
 import javafx.scene.text.Text
 import javafx.stage.FileChooser
+import javafx.stage.Stage
 import java.io.File
 
 class ManagerController {
@@ -39,6 +46,23 @@ class ManagerController {
 
     @FXML
     private lateinit var reportText: Text
+
+    @FXML
+    fun signOutAction(event: Event) {
+        try {
+            (event.source as Node).scene.window.hide()
+            val mainSource = FXMLLoader.load<Parent>(javaClass
+                    .getResource("../layouts/main_layout.fxml"))
+            val mainStage = Stage()
+            mainStage.icons.add(Image(javaClass.getResourceAsStream("../images/icon.png")))
+            mainStage.title = Main.APP_NAME
+            mainStage.scene = Scene(mainSource)
+            mainStage.isResizable = false
+            mainStage.show()
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
 
     private var musicName: String? = null
     private var bandName: String? = null
