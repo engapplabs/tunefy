@@ -1,8 +1,8 @@
 package com.abuarquemf.tunefy.musicmanager.controllers
 
+import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import javafx.event.Event
 import javafx.fxml.FXML
-import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
 import javafx.stage.FileChooser
@@ -18,13 +18,16 @@ class ManagerController {
     @FXML
     private lateinit var infoLabel: Label
 
-    @FXML
-    private lateinit var sendTuneButton: Button
-
     private var tunePath: String? = null
 
+    private var isAvaiableToSendTune: Boolean = false
+
+    private var usersCounter: Int = 0
+
+    private var tunesCounter: Int = 0
+
     fun initialize() {
-        sendTuneButton.isVisible = false
+        //TODO retrieve info from server aobut users and tunes
     }
 
     @FXML
@@ -43,11 +46,10 @@ class ManagerController {
                 try {
                     tunePath = choosenImage.toURI().toURL().toString()
                     infoLabel.text = tunePath
-                    sendTuneButton.isVisible = true
+                    isAvaiableToSendTune = true
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-
             } else {
                 infoLabel.text = "Selecting canceled."
             }
@@ -56,7 +58,11 @@ class ManagerController {
 
     @FXML
     fun sendTuneAction(event: Event) {
-        //TODO send music to server
+        if(isAvaiableToSendTune) {
+            val response = RestHandler.getInstance().doGet("")
+        } else {
+            infoLabel.text = "Fill all spaces."
+        }
     }
 
     @FXML
