@@ -58,7 +58,7 @@
                      </opaqueInsets>
                   </TextField>
                   <TextField fx:id="bandNameField" alignment="CENTER" layoutX="116.0" layoutY="81.0" prefHeight="26.0" prefWidth="367.0" promptText="Band name" />
-                  <TextField fx:id="bandNameField1" alignment="CENTER" disable="true" layoutX="117.0" layoutY="121.0" prefHeight="26.0" prefWidth="367.0" promptText="Tune Id" />
+                  <TextField fx:id="idField" alignment="CENTER" disable="true" layoutX="117.0" layoutY="121.0" prefHeight="26.0" prefWidth="367.0" promptText="Tune Id" />
                   <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="6.0" prefHeight="16.0" prefWidth="365.0" textFill="#c90c0c" />
                </children>
             </AnchorPane>
