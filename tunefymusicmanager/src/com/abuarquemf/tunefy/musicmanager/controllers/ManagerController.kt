@@ -90,7 +90,7 @@ class ManagerController {
         if(isAvaiableToSendTune) {
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
-                            Music(musicName!!, bandName!!, "", -505))
+                            Music(musicName!!, bandName!!, ""))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(
                     response, object: TypeToken<Music>(){}.type)
