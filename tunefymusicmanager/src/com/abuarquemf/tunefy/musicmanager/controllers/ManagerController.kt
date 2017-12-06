@@ -3,10 +3,13 @@ package com.abuarquemf.tunefy.musicmanager.controllers
 import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javafx.event.Event
 import javafx.fxml.FXML
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
+import javafx.scene.text.Text
 import javafx.stage.FileChooser
 
 class ManagerController {
@@ -29,6 +32,15 @@ class ManagerController {
     @FXML
     private lateinit var idField: TextField
 
+    @FXML
+    private lateinit var defaultInfoLabel: Label
+
+    @FXML
+    private lateinit var reportText: Text
+
+    private var musicName: String? = null
+    private var bandName: String? = null
+
     private var tunePath: String? = null
 
     private var isAvaiableToSendTune: Boolean = false
@@ -49,8 +61,8 @@ class ManagerController {
 
     @FXML
     fun picTuneAction(event: Event) {
-        val musicName = musicNameField.text
-        val bandName = bandNameField.text
+        musicName = musicNameField.text
+        bandName = bandNameField.text
         if(musicName.equals("") || bandName.equals("")) {
             infoLabel.text = "Fill all spaces."
         } else {
@@ -76,8 +88,17 @@ class ManagerController {
     @FXML
     fun sendTuneAction(event: Event) {
         if(isAvaiableToSendTune) {
-            val response = RestHandler.getInstance().doPost(URLhandler.urlPOST(), Music())
-            println("LOG: " + response)
+            val response = RestHandler.getInstance()
+                    .doPost(URLhandler.urlPOST(),
+                            Music(musicName!!, bandName!!, "", -505))
+            defaultInfoLabel.text = "Added new tune"
+            val responseTune = Gson().fromJson<Music>(
+                    response, object: TypeToken<Music>(){}.type)
+            var messageBuilder = StringBuilder()
+            messageBuilder.append("Tune: ${responseTune.name}")
+            messageBuilder.append("\nBand: ${responseTune.band}")
+            messageBuilder.append("\nID: ${responseTune.id}")
+            reportText.text = messageBuilder.toString()
         } else {
             infoLabel.text = "Fill all spaces."
         }
