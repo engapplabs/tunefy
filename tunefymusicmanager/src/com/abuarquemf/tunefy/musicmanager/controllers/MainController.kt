@@ -11,6 +11,7 @@ import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.control.PasswordField
 import javafx.scene.control.TextField
+import javafx.scene.image.Image
 import javafx.stage.Stage
 
 internal class MainController {
@@ -38,6 +39,7 @@ internal class MainController {
                     val mainSource = FXMLLoader.load<Parent>(javaClass
                             .getResource("../layouts/manager_layout.fxml"))
                     val mainStage = Stage()
+                    mainStage.icons.add(Image(javaClass.getResourceAsStream("../images/icon.png")))
                     mainStage.title = Main.APP_NAME
                     mainStage.scene = Scene(mainSource)
                     mainStage.isResizable = false
