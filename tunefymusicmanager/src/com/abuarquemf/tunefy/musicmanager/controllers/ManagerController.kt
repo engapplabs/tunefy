@@ -3,6 +3,7 @@ package com.abuarquemf.tunefy.musicmanager.controllers
 import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
+import com.abuarquemf.tunefy.musicmanager.streamhandler.TuneStreamParser
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javafx.event.Event
@@ -11,6 +12,7 @@ import javafx.scene.control.Label
 import javafx.scene.control.TextField
 import javafx.scene.text.Text
 import javafx.stage.FileChooser
+import java.io.File
 
 class ManagerController {
 
@@ -45,6 +47,8 @@ class ManagerController {
 
     private var isAvaiableToSendTune: Boolean = false
 
+    private var choosenImage: File? = null
+
     fun initialize() {
         //TODO retrieve info from server aobut users and tunes
         usersCounter.isVisible = false
@@ -70,10 +74,10 @@ class ManagerController {
             fileChooser.title = "Pick tune"
             fileChooser.extensionFilters.addAll(FileChooser.ExtensionFilter("Tune sources",
                     *arrayOf("*.mp3")))
-            val choosenImage = fileChooser.showOpenDialog(infoLabel.getScene().getWindow())
+            choosenImage = fileChooser.showOpenDialog(infoLabel.getScene().getWindow())
             if (choosenImage != null) {
                 try {
-                    tunePath = choosenImage.toURI().toURL().toString()
+                    tunePath = choosenImage!!.toURI().toURL().toString()
                     infoLabel.text = tunePath
                     isAvaiableToSendTune = true
                 } catch (e: Exception) {
@@ -90,7 +94,8 @@ class ManagerController {
         if(isAvaiableToSendTune) {
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
-                            Music(musicName!!, bandName!!, ""))
+                            Music(musicName!!, bandName!!,
+                                    TuneStreamParser().parseResource(choosenImage!!.absolutePath)))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(
                     response, object: TypeToken<Music>(){}.type)
