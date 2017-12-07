@@ -29,10 +29,9 @@ class MusicResource(val musicRepository: MusicRepository) {
     @RequestMapping(value = "/add")
     fun addMusic(@RequestBody music: Music): Music {
         //this music object id is define using system time
-        val validMusic = Music(music.name, music.band,
-                music.musicResource, Date().getTime() / 1000)
-        musicRepository.save(validMusic)
-        return validMusic
+        music.id = Date().getTime() / 1000
+        musicRepository.save(music)
+        return music
     }
 
     @PutMapping
