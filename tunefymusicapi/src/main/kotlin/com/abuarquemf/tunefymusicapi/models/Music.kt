@@ -5,7 +5,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "music")
 data class Music(val name: String, val band: String,
-                 val musicResource: String, @Id val id: Long) {
+                 val musicResource: String, @Id var id: Long) {
 
-    constructor() : this("music_name", "band_name", "music_resource", -505)
+    constructor() : this("music_name", "band_name", String(), -505)
+
+    constructor(name: String, band: String, musicResource: String) : this(name, band, musicResource, -505)
+
+    constructor(id: Long): this("music_name", "band_name", String(), id)
 }
