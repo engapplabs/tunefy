@@ -119,7 +119,8 @@ class ManagerController {
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
                             Music(musicName!!, bandName!!,
-                                    TuneStreamParser().parseResource(choosenImage!!.absolutePath)))
+                                    TuneStreamParser()
+                                            .stringPathToBytes(choosenImage!!.absolutePath).toString()))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(
                     response, object: TypeToken<Music>(){}.type)
