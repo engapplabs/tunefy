@@ -1,3 +1,3 @@
 package com.abuarquemf.tunefy.musicmanager.streamhandler
 
-class TuneStreamParser : StreamsHandler()
+class TuneStreamParser : ResourceCompressionHandler()
