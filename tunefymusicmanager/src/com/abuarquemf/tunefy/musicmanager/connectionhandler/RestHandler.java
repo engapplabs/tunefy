@@ -48,8 +48,6 @@ public class RestHandler {
             connection.setRequestMethod("GET");
 
             responseCode = connection.getResponseCode();
-            System.out.println("\nSending 'GET' request to URL : " + url);
-            System.out.println("Response Code : " + responseCode);
 
             in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
@@ -100,9 +98,6 @@ public class RestHandler {
             output.close();
 
             responseCode = connection.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + url);
-            System.out.println("POST params: " + content);
-            System.out.println("Response Code : " + responseCode);
 
             in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
@@ -153,9 +148,6 @@ public class RestHandler {
             output.close();
 
             responseCode = connection.getResponseCode();
-            System.out.println("\nSending 'DELETE' request to URL : " + url);
-            System.out.println("DELETE params: " + content);
-            System.out.println("Response Code : " + responseCode);
 
             in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
@@ -206,9 +198,6 @@ public class RestHandler {
             output.close();
 
             responseCode = connection.getResponseCode();
-            System.out.println("\nSending 'PUT' request to URL : " + url);
-            System.out.println("PUT params: " + content);
-            System.out.println("Response Code : " + responseCode);
 
             in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));
