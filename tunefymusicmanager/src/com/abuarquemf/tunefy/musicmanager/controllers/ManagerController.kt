@@ -4,6 +4,7 @@ import com.abuarquemf.tunefy.musicmanager.Main
 import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
+import com.abuarquemf.tunefy.musicmanager.streamhandler.SerializationUtils
 import com.abuarquemf.tunefy.musicmanager.streamhandler.TuneStreamParser
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -119,8 +120,7 @@ class ManagerController {
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
                             Music(musicName!!, bandName!!,
-                                    TuneStreamParser()
-                                            .compressResource(choosenImage!!.absolutePath).toString()))
+                                    SerializationUtils.serialize(choosenImage)))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(
                     response, object: TypeToken<Music>(){}.type)
