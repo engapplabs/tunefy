@@ -5,7 +5,6 @@ import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
 import com.abuarquemf.tunefy.musicmanager.streamhandler.SerializationUtils
-import com.abuarquemf.tunefy.musicmanager.streamhandler.TuneStreamParser
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javafx.event.Event
