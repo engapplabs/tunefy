@@ -8,7 +8,7 @@ import java.util.Base64;
  *
  * @author andy (https://gist.github.com/andy722/1524968)
  */
-class SerializationUtils {
+public class SerializationUtils {
 
     public static <T extends Serializable> String serialize(T item) {
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
