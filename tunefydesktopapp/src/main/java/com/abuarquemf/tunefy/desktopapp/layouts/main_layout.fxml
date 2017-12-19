@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abuarquemf.tunefy.desktopapp.controllers.MainController">
-   <stylesheets>
-      <URL value="@../stylesheets/main_layout.css" />
-   </stylesheets>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="internalAnchor" layoutX="290.0" layoutY="225.0" prefHeight="211.0" prefWidth="210.0" />
-      <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="307.0" layoutY="320.0" prefHeight="26.0" prefWidth="171.0" promptText="Password" />
-      <TextField fx:id="loginField" alignment="CENTER" layoutX="306.0" layoutY="273.0" prefHeight="26.0" prefWidth="171.0" promptText="Login" />
-      <Button fx:id="signInButton" layoutX="307.0" layoutY="365.0" mnemonicParsing="false" onAction="#signInAction" prefHeight="26.0" prefWidth="171.0" text="Sign In" />
-      <ImageView fitHeight="77.0" fitWidth="83.0" layoutX="357.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/icon.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="489.0" prefHeight="16.0" prefWidth="282.0" />
+      <AnchorPane layoutX="4.0" layoutY="-3.0" prefHeight="632.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;" />
+      <AnchorPane layoutX="373.0" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
+         <children>
+            <Pane prefHeight="101.0" prefWidth="321.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
+               <children>
+                  <Label layoutX="14.0" layoutY="23.0" prefHeight="24.0" prefWidth="169.0" text="KeepTooMusic" textFill="#f2e9e9">
+                     <font>
+                        <Font name="System Bold Italic" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="52.0" prefHeight="24.0" prefWidth="169.0" text="Beauty" textFill="#f2e9e9">
+                     <font>
+                        <Font name="System Bold Italic" size="19.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="143.0" prefHeight="24.0" prefWidth="133.0" text="Album style" textFill="#f2e9e9">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="175.0" prefHeight="24.0" prefWidth="125.0" text="Dark mode" textFill="#f2e9e9">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <JFXToggleButton contentDisplay="GRAPHIC_ONLY" layoutX="236.0" layoutY="122.0" text="ToggleButton" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>
