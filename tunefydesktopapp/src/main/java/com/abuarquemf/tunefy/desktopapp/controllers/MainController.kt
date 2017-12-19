@@ -13,6 +13,7 @@ import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import javafx.fxml.Initializable
 import javafx.scene.input.MouseEvent
+import javafx.scene.layout.AnchorPane
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
@@ -25,6 +26,24 @@ class MainController : Initializable {
     @FXML
     lateinit var closeAppButton: MaterialDesignIconView
 
+    @FXML
+    lateinit var closeTunesListNode: MaterialDesignIconView
+
+    @FXML
+    lateinit var closeAccountSettingsNode: MaterialDesignIconView
+
+    @FXML
+    lateinit var closeUserSettingsNode: MaterialDesignIconView
+
+    @FXML
+    lateinit var tunesListNode: AnchorPane
+
+    @FXML
+    lateinit var accountSettingsNode: AnchorPane
+
+    @FXML
+    lateinit var userSettingsNode: AnchorPane
+
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("Initialized")
     }
@@ -33,6 +52,12 @@ class MainController : Initializable {
     fun closeApp(event: MouseEvent) {
         if(event.source == closeAppButton)
             System.exit(0)
+        else if(event.source == closeTunesListNode)
+            tunesListNode.isVisible = false
+        else if(event.source == closeAccountSettingsNode)
+            accountSettingsNode.isVisible = false
+        else if(event.source == closeUserSettingsNode)
+            userSettingsNode.isVisible = false
     }
 
     fun createResourceFile(resourceAsBytes: ByteArray, resourceName: String) {

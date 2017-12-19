@@ -6,6 +6,7 @@ import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.scene.input.MouseEvent
+import javafx.scene.paint.Color
 import javafx.stage.Stage
 import javafx.stage.StageStyle
 
@@ -15,13 +16,13 @@ class Main : Application() {
     private var yOffset: Double  = 0.0
 
     override fun start(primaryStage: Stage) {
-        primaryStage.title = APP_NAME
-        primaryStage.isResizable = false
-        primaryStage.initStyle(StageStyle.TRANSPARENT)
-
-        primaryStage.icons.add(Image(javaClass.getResourceAsStream("images/icon.png")))
-
         val root = FXMLLoader.load<Parent>(javaClass.getResource("layouts/main_layout.fxml"))
+        primaryStage.isResizable = false
+        primaryStage.title = APP_NAME
+        val scene = Scene(root)
+        primaryStage.scene = scene
+        primaryStage.initStyle(StageStyle.TRANSPARENT)
+        scene.fill = Color.TRANSPARENT
 
         root.onMousePressed = object : javafx.event.EventHandler<MouseEvent> {
             override fun handle(event: MouseEvent) {
@@ -35,12 +36,7 @@ class Main : Application() {
             primaryStage.x = event.screenX - xOffset
             primaryStage.y = event.screenY - yOffset
         }
-
-        val scene = Scene(root)
-        scene.fill = javafx.scene.paint.Color.TRANSPARENT
-        primaryStage.scene = scene
-        primaryStage.show()
-
+        primaryStage.icons.add(Image(javaClass.getResourceAsStream("images/icon.png")))
         primaryStage.show()
     }
 

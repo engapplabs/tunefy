@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="com.abuarquemf.tunefy.desktopapp.controllers.MainController" fx:id="rootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1072.0" style="-fx-background-color: rgba(0,0,0,0);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abuarquemf.tunefy.desktopapp.controllers.MainController">
    <children>
-      <AnchorPane layoutX="323.0" layoutY="1.0" prefHeight="609.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;">
+      <AnchorPane fx:id="mainNode" layoutX="356.0" prefHeight="609.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;">
          <children>
             <Pane disable="true" layoutY="432.0" prefHeight="200.0" prefWidth="360.0" styleClass="linear-grad-to-bottom" stylesheets="@../stylesheets/gradient.css">
                <children>
@@ -18,16 +18,17 @@
                </children></Pane>
             <Pane prefHeight="49.0" prefWidth="360.0" styleClass="linear-grad-to-top" stylesheets="@../stylesheets/gradient.css">
                <children>
-                  <Label layoutX="9.0" layoutY="6.0" prefHeight="24.0" prefWidth="169.0" text="Tunefy" textFill="#f2e9e9">
+                  <Label layoutX="145.0" layoutY="14.0" prefHeight="24.0" prefWidth="169.0" text="Tunefy" textFill="#f2e9e9">
                      <font>
                         <Font name="System Bold Italic" size="19.0" />
                      </font>
                   </Label>
                   <MaterialDesignIconView fx:id="closeAppButton" fill="#f5f3f3" glyphName="CLOSE" layoutX="333.0" layoutY="29.0" onMouseClicked="#closeApp" size="20" />
+                  <MaterialDesignIconView fill="#f5efef" glyphName="VIEW_HEADLINE" layoutX="14.0" layoutY="29.0" size="20" />
                </children>
             </Pane>
          </children></AnchorPane>
-      <AnchorPane layoutX="691.0" layoutY="2.0" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
+      <AnchorPane fx:id="userSettingsNode" layoutX="733.0" layoutY="6.0" onMouseClicked="#closeApp" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
          <children>
             <Pane prefHeight="101.0" prefWidth="321.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
                <children>
@@ -36,7 +37,9 @@
                         <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Label>
-               </children></Pane>
+                  <MaterialDesignIconView fx:id="closeUserSettingsNode" fill="#f5f3f3" glyphName="CLOSE" layoutX="295.0" layoutY="26.0" onMouseClicked="#closeApp" size="20" />
+               </children>
+            </Pane>
             <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
@@ -46,10 +49,36 @@
             <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="22.0" layoutY="169.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
             <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutY="212.0" prefHeight="58.0" prefWidth="237.0" text="Album style" textFill="#dad9d9" />
             <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="24.0" layoutY="257.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
-         </children></AnchorPane>
-      <AnchorPane layoutX="691.0" layoutY="425.0" prefHeight="200.0" prefWidth="321.0" style="-fx-background-radius: 0.5em; -fx-background-color: #5AB0E2;">
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="accountSettingsNode" layoutX="733.0" layoutY="436.0" prefHeight="185.0" prefWidth="321.0" style="-fx-background-radius: 0.5em; -fx-background-color: #5AB0E2;">
          <children>
             <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutX="5.0" layoutY="5.0" prefHeight="58.0" prefWidth="237.0" text="Download tunes" textFill="#dad9d9" />
+            <MaterialDesignIconView fx:id="closeAccountSettingsNode" fill="#f5f3f3" glyphName="CLOSE" layoutX="293.0" layoutY="24.0" onMouseClicked="#closeApp" size="20" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="76.0" layoutX="-10.0" layoutY="50.0" prefHeight="58.0" prefWidth="268.0" text="Stay logged" textFill="#dad9d9" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="tunesListNode" layoutX="23.0" layoutY="5.0" onMouseClicked="#closeApp" prefHeight="532.0" prefWidth="321.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
+         <children>
+            <Pane prefHeight="101.0" prefWidth="321.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
+               <children>
+                  <Label layoutX="13.0" layoutY="52.0" prefHeight="24.0" prefWidth="169.0" text="Just play it" textFill="#f2e9e9">
+                     <font>
+                        <Font name="System Bold Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <MaterialDesignIconView fx:id="closeTunesListNode" fill="#f5f3f3" glyphName="CLOSE" layoutX="295.0" layoutY="26.0" onMouseClicked="#closeApp" size="20" />
+               </children>
+            </Pane>
+            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutY="131.0" prefHeight="58.0" prefWidth="237.0" text="Album style" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="22.0" layoutY="169.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutY="212.0" prefHeight="58.0" prefWidth="237.0" text="Album style" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="24.0" layoutY="257.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
          </children>
       </AnchorPane>
    </children>
