@@ -5,18 +5,35 @@ import com.abuarquemf.tunefy.desktopapp.models.Music
 import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
 import javafx.concurrent.Task
 import javafx.event.Event
 import javafx.fxml.FXML
 import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
+import javafx.fxml.Initializable
+import javafx.scene.input.MouseEvent
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
+import java.net.URL
 import java.nio.file.Files
+import java.util.*
 
+class MainController : Initializable {
 
-class MainController {
+    @FXML
+    lateinit var closeAppButton: MaterialDesignIconView
+
+    override fun initialize(location: URL?, resources: ResourceBundle?) {
+        println("Initialized")
+    }
+
+    @FXML
+    fun closeApp(event: MouseEvent) {
+        if(event.source == closeAppButton)
+            System.exit(0)
+    }
 
     fun createResourceFile(resourceAsBytes: ByteArray, resourceName: String) {
         try {
