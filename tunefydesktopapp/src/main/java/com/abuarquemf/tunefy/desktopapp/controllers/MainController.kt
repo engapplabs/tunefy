@@ -11,10 +11,8 @@ import javafx.fxml.FXML
 import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import java.io.IOException
-import com.sun.xml.internal.ws.streaming.XMLStreamReaderUtil.close
 import java.io.File
 import java.io.FileOutputStream
-import java.io.PrintWriter
 import java.nio.file.Files
 
 
@@ -29,7 +27,6 @@ class MainController {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
     }
 
     @FXML
