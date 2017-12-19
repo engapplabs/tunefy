@@ -1,0 +1,7 @@
+#internalAnchor {
+    -fx-background-color: cyan;
+}
+
+#infoLabel {
+    -fx-text-fill: red;
+}

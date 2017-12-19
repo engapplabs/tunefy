@@ -1,4 +1,4 @@
-package com.abuarquemf.tunefymusicapi.models
+package com.abuarquemf.tunefy.desktopapp.models
 
 data class Music(val name: String, val band: String,
                  val musicResource: String, var id: Long) {

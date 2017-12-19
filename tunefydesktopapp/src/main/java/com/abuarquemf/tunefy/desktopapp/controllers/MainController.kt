@@ -1,8 +1,8 @@
 package com.abuarquemf.tunefy.desktopapp.controllers
 
 import com.abuarquemf.tunefy.desktopapp.connectionhandler.RestHandler
+import com.abuarquemf.tunefy.desktopapp.models.Music
 import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils
-import com.abuarquemf.tunefymusicapi.models.Music
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javafx.concurrent.Task
@@ -53,5 +53,10 @@ class MainController {
         };
 
         Thread(task).start()
+    }
+
+    @FXML
+    fun signInAction(evente: Event) {
+        println("Sign in")
     }
 }
