@@ -8,7 +8,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="4.0" layoutY="-3.0" prefHeight="632.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;" />
+      <AnchorPane layoutX="4.0" layoutY="-3.0" prefHeight="632.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;">
+         <children>
+            <Pane layoutY="432.0" prefHeight="200.0" prefWidth="360.0" styleClass="linear-grad-to-bottom" stylesheets="@../stylesheets/gradient.css" />
+         </children></AnchorPane>
       <AnchorPane layoutX="373.0" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
          <children>
             <Pane prefHeight="101.0" prefWidth="321.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
@@ -20,26 +23,19 @@
                   </Label>
                   <Label layoutX="13.0" layoutY="52.0" prefHeight="24.0" prefWidth="169.0" text="Beauty" textFill="#f2e9e9">
                      <font>
-                        <Font name="System Bold Italic" size="19.0" />
+                        <Font name="System Bold Italic" size="15.0" />
                      </font>
                   </Label>
                </children></Pane>
             <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
                <font>
-                  <Font name="System Bold Italic" size="19.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="11.0" layoutY="143.0" prefHeight="24.0" prefWidth="133.0" text="Album style" textFill="#f2e9e9">
-               <font>
-                  <Font name="System Bold Italic" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="11.0" layoutY="175.0" prefHeight="24.0" prefWidth="125.0" text="Dark mode" textFill="#f2e9e9">
-               <font>
-                  <Font name="System Bold Italic" size="19.0" />
-               </font>
-            </Label>
-            <JFXToggleButton contentDisplay="GRAPHIC_ONLY" layoutX="236.0" layoutY="122.0" text="ToggleButton" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutY="131.0" prefHeight="58.0" prefWidth="237.0" text="Album style" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="22.0" layoutY="169.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="47.0" layoutY="212.0" prefHeight="58.0" prefWidth="237.0" text="Album style" textFill="#dad9d9" />
+            <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="40.0" layoutX="24.0" layoutY="257.0" prefHeight="58.0" prefWidth="192.0" text="Dark module" textFill="#dad9d9" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
