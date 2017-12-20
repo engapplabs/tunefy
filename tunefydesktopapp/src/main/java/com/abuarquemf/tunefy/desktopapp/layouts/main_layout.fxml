@@ -32,11 +32,11 @@
             </Label>
             <HBox alignment="CENTER" layoutX="-3.0" layoutY="481.0" prefHeight="100.0" prefWidth="371.0" spacing="20.0">
                <children>
-                  <MaterialDesignIconView fx:id="vaca" fill="#f5f3f3" glyphName="SHUFFLE_VARIANT" onMouseClicked="#closeApp" size="30" />
-                  <MaterialDesignIconView fx:id="vaca1" fill="#f5f3f3" glyphName="CHEVRON_LEFT" onMouseClicked="#closeApp" size="40" />
+                  <MaterialDesignIconView fx:id="shuffleTuneButton" fill="#f5f3f3" glyphName="SHUFFLE_VARIANT" onMouseClicked="#handleTunePlaying" size="30" />
+                  <MaterialDesignIconView fx:id="prevTuneButton" fill="#f5f3f3" glyphName="CHEVRON_LEFT" onMouseClicked="#handleTunePlaying" size="40" />
                   <MaterialDesignIconView fx:id="playPauseButton" fill="#f5f3f3" glyphName="STEP_FORWARD" onMouseClicked="#handleTunePlaying" size="35" />
-                  <MaterialDesignIconView fx:id="vaca2" fill="#f5f3f3" glyphName="CHEVRON_RIGHT" onMouseClicked="#closeApp" size="40" />
-                  <MaterialDesignIconView fx:id="vaca31" fill="#f5f3f3" glyphName="REPLAY" onMouseClicked="#closeApp" size="30" />
+                  <MaterialDesignIconView fx:id="nextTuneButton" fill="#f5f3f3" glyphName="CHEVRON_RIGHT" onMouseClicked="#handleTunePlaying" size="40" />
+                  <MaterialDesignIconView fx:id="repeatTuneButton" fill="#f5f3f3" glyphName="REPLAY" onMouseClicked="#handleTunePlaying" size="30" />
                </children>
             </HBox>
          </children></AnchorPane>

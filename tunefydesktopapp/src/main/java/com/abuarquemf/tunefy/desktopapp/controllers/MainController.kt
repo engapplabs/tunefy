@@ -39,6 +39,21 @@ class MainController : Initializable {
     lateinit var closeUserSettingsNode: MaterialDesignIconView
 
     @FXML
+    lateinit var playPauseButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var nextTuneButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var repeatTuneButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var prevTuneButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var shuffleTuneButton: MaterialDesignIconView
+
+    @FXML
     lateinit var tunesListNode: AnchorPane
 
     @FXML
@@ -62,11 +77,10 @@ class MainController : Initializable {
     @FXML
     fun handleTunePlaying(event: MouseEvent) {
         println("HEHE")
-        if(event.source == playPauseButton) println("VCA")
+        when(event.source) {
+            playPauseButton -> println("PLAY/PAUSE")
+        }
     }
-
-    @FXML
-    lateinit var playPauseButton: MaterialDesignIconView
 
     /**
      * It handles close situations in app, such as
