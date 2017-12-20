@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -15,6 +17,16 @@
             <Pane disable="true" layoutY="432.0" prefHeight="200.0" prefWidth="360.0" styleClass="linear-grad-to-bottom" stylesheets="@../stylesheets/gradient.css">
                <children>
                   <JFXProgressBar layoutX="80.0" layoutY="13.0" />
+                  <Label fx:id="tuneNameLabel" alignment="CENTER" layoutX="51.0" layoutY="54.0" prefHeight="16.0" prefWidth="268.0" text="Tune Name" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <MaterialDesignIconView fx:id="shuffleTuneButton" fill="WHITE" glyphName="SHUFFLE_VARIANT" layoutX="51.0" layoutY="124.0" onMouseClicked="#closeApp" size="30" />
+                  <MaterialDesignIconView fx:id="prevTuneButton" fill="WHITE" glyphName="CHEVRON_LEFT" layoutX="95.0" layoutY="128.0" onMouseClicked="#closeApp" size="40" />
+                  <MaterialDesignIconView fx:id="playPauseButton" fill="WHITE" glyphName="STEP_FORWARD" layoutX="140.0" layoutY="130.0" onMouseClicked="#closeApp" size="40" />
+                  <MaterialDesignIconView fx:id="nextTuneButton" fill="#ffffffe8" glyphName="CHEVRON_RIGHT" layoutX="184.0" layoutY="128.0" onMouseClicked="#closeApp" size="40" smooth="false" />
+                  <MaterialDesignIconView fx:id="repeatTuneButton" fill="#ebebeb" glyphName="REPLAY" layoutX="231.0" layoutY="124.0" onMouseClicked="#closeApp" size="30" />
                </children></Pane>
             <Pane prefHeight="49.0" prefWidth="360.0" styleClass="linear-grad-to-top" stylesheets="@../stylesheets/gradient.css">
                <children>
@@ -27,6 +39,11 @@
                   <MaterialDesignIconView fill="#f5efef" glyphName="VIEW_HEADLINE" layoutX="14.0" layoutY="29.0" size="20" />
                </children>
             </Pane>
+            <ImageView fx:id="tuneImageView" fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icon.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <AnchorPane fx:id="userSettingsNode" layoutX="733.0" layoutY="6.0" onMouseClicked="#closeApp" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
          <children>
@@ -58,9 +75,9 @@
             <JFXToggleButton contentDisplay="RIGHT" graphicTextGap="76.0" layoutX="-10.0" layoutY="50.0" prefHeight="58.0" prefWidth="268.0" text="Stay logged" textFill="#dad9d9" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="tunesListNode" layoutX="23.0" layoutY="5.0" onMouseClicked="#closeApp" prefHeight="532.0" prefWidth="321.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
+      <AnchorPane fx:id="tunesListNode" layoutX="-4.0" layoutY="5.0" onMouseClicked="#closeApp" prefHeight="589.0" prefWidth="348.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
          <children>
-            <Pane prefHeight="101.0" prefWidth="321.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
+            <Pane prefHeight="89.0" prefWidth="348.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.2em;">
                <children>
                   <Label layoutX="13.0" layoutY="52.0" prefHeight="24.0" prefWidth="169.0" text="Just play it" textFill="#f2e9e9">
                      <font>

@@ -12,8 +12,11 @@ import javafx.fxml.FXML
 import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import javafx.fxml.Initializable
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.AnchorPane
+import javafx.scene.paint.Material
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
@@ -36,6 +39,15 @@ class MainController : Initializable {
     lateinit var closeUserSettingsNode: MaterialDesignIconView
 
     @FXML
+    lateinit var shuffleTuneButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var prevTuneButton: MaterialDesignIconView
+
+    @FXML
+    lateinit var tuneImageView: ImageView
+
+    @FXML
     lateinit var tunesListNode: AnchorPane
 
     @FXML
@@ -49,6 +61,25 @@ class MainController : Initializable {
     }
 
     @FXML
+    lateinit var bluetooth: MaterialDesignIconView
+
+    /**
+     * It handles tune play control buttons,
+     * such as play, repeat, shuffle...
+     *
+     */
+    @FXML
+    fun handleTunePlaying(event: MouseEvent) {
+        println("HEHE")
+        if(event.source == shuffleTuneButton) println("haca")
+    }
+
+    /**
+     * It handles close situations in app, such as
+     * properly close the app and also close internal
+     * nodes.
+     */
+    @FXML
     fun closeApp(event: MouseEvent) {
         if(event.source == closeAppButton)
             System.exit(0)
@@ -58,6 +89,9 @@ class MainController : Initializable {
             accountSettingsNode.isVisible = false
         else if(event.source == closeUserSettingsNode)
             userSettingsNode.isVisible = false
+        if(event.source == bluetooth) println("HHH")
+        if(event.source == shuffleTuneButton) println("SHUFEL")
+        if(event.source == prevTuneButton) println("OOI")
     }
 
     fun createResourceFile(resourceAsBytes: ByteArray, resourceName: String) {
