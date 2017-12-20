@@ -16,6 +16,8 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.AnchorPane
+import javafx.scene.media.Media
+import javafx.scene.media.MediaPlayer
 import javafx.scene.paint.Material
 import java.io.IOException
 import java.io.File
@@ -66,9 +68,6 @@ class MainController : Initializable {
         println("Initialized")
     }
 
-    @FXML
-    lateinit var bluetooth: MaterialDesignIconView
-
     /**
      * It handles tune play control buttons,
      * such as play, repeat, shuffle...
@@ -76,9 +75,12 @@ class MainController : Initializable {
      */
     @FXML
     fun handleTunePlaying(event: MouseEvent) {
-        println("HEHE")
         when(event.source) {
-            playPauseButton -> println("PLAY/PAUSE")
+            playPauseButton -> downloadTune()
+            nextTuneButton -> println("next")
+            prevTuneButton -> println("Prev")
+            shuffleTuneButton -> println("shuffle")
+            repeatTuneButton -> println("Repeat")
         }
     }
 
@@ -110,8 +112,7 @@ class MainController : Initializable {
         }
     }
 
-    @FXML
-    fun downloadTune(event: Event) {
+    fun downloadTune() {
 
         val task = object : Task<Music>() {
 
@@ -128,8 +129,12 @@ class MainController : Initializable {
                 println(tune)
                 val tuneResource = tune.musicResource
                 val tuneFile = SerializationUtils.deserialize<File>(tuneResource)
-                createResourceFile(Files.readAllBytes(tuneFile.toPath()),
-                        "chegou.mp3")
+                //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
+                  //      "chegou.mp3")
+
+                val media = Media(tuneFile.toURI().toURL().toString())
+                val mediaPlayer = MediaPlayer(media)
+                mediaPlayer.play()
             }
         };
 
