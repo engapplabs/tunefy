@@ -16,6 +16,7 @@ import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.control.TextField
 import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.text.Text
 import javafx.stage.FileChooser
 import javafx.stage.Stage
@@ -47,12 +48,17 @@ class ManagerController {
     @FXML
     private lateinit var reportText: Text
 
+    @FXML
+    private lateinit var tuneImage: ImageView
+
     private var musicName: String? = null
     private var bandName: String? = null
 
     private var tunePath: String? = null
 
     private var isAvaiableToSendTune: Boolean = false
+
+    private var choosenTune: File? = null
 
     private var choosenImage: File? = null
 
@@ -98,10 +104,10 @@ class ManagerController {
             fileChooser.title = "Pick tune"
             fileChooser.extensionFilters.addAll(FileChooser.ExtensionFilter("Tune sources",
                     *arrayOf("*.mp3")))
-            choosenImage = fileChooser.showOpenDialog(infoLabel.getScene().getWindow())
-            if (choosenImage != null) {
+            choosenTune = fileChooser.showOpenDialog(infoLabel.getScene().getWindow())
+            if (choosenTune != null) {
                 try {
-                    tunePath = choosenImage!!.toURI().toURL().toString()
+                    tunePath = choosenTune!!.toURI().toURL().toString()
                     infoLabel.text = tunePath
                     isAvaiableToSendTune = true
                 } catch (e: Exception) {
@@ -114,11 +120,35 @@ class ManagerController {
     }
 
     @FXML
+    fun picImageAction(event: Event) {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Pick tune"
+        fileChooser.extensionFilters.addAll(FileChooser.ExtensionFilter("Tune sources",
+                *arrayOf("*.png", "*.jpg")))
+        choosenImage = fileChooser.showOpenDialog(infoLabel.getScene().getWindow())
+        if (choosenImage != null) {
+            val compressed = SerializationUtils.serialize(choosenImage)
+            println("Image compress: $compressed")
+            try {
+                //picPath = choosenImage!!.toURI().toURL().toString()
+                //tuneImage!!.text = picPath
+                tuneImage.image = Image(choosenImage!!.toURI().toURL().toString())
+                isAvaiableToSendTune = true
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        } else {
+            infoLabel.text = "Selecting canceled."
+        }
+    }
+
+    @FXML
     fun sendTuneAction(event: Event) {
         if(isAvaiableToSendTune) {
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
                             Music(musicName!!, bandName!!,
+                                    SerializationUtils.serialize(choosenTune),
                                     SerializationUtils.serialize(choosenImage)))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(

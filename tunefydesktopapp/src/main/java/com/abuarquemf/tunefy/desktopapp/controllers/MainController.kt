@@ -12,6 +12,7 @@ import javafx.fxml.FXML
 import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import javafx.fxml.Initializable
+import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
@@ -63,6 +64,12 @@ class MainController : Initializable {
 
     @FXML
     lateinit var userSettingsNode: AnchorPane
+
+    @FXML
+    lateinit var tuneImage: ImageView
+
+    @FXML
+    lateinit var tuneNameLabel: Label
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("Initialized")
@@ -118,7 +125,7 @@ class MainController : Initializable {
 
             override fun call(): Music {
                 val echo =  RestHandler.getInstance()
-                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513618892)
+                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513804858)
                 return Gson().fromJson<Music>(echo, object: TypeToken<Music>(){}.type)
             }
         }
@@ -129,6 +136,9 @@ class MainController : Initializable {
                 println(tune)
                 val tuneResource = tune.musicResource
                 val tuneFile = SerializationUtils.deserialize<File>(tuneResource)
+                val tuneImge = SerializationUtils.deserialize<File>(tune.imageResource)
+                tuneImage.image = Image(tuneImge.toURI().toURL().toString())
+                tuneNameLabel.text = tune.name
                 //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
                 //      "chegou.mp3")
 

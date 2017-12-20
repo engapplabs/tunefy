@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -39,6 +40,7 @@
                   <MaterialDesignIconView fx:id="repeatTuneButton" fill="#f5f3f3" glyphName="REPLAY" onMouseClicked="#handleTunePlaying" size="30" />
                </children>
             </HBox>
+            <ImageView fx:id="tuneImage" fitHeight="150.0" fitWidth="200.0" layoutX="105.0" layoutY="198.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
       <AnchorPane fx:id="userSettingsNode" layoutX="733.0" layoutY="6.0" onMouseClicked="#closeApp" prefHeight="411.0" prefWidth="319.0" style="-fx-background-radius: 0.5em; -fx-background-color: #283C50;">
          <children>
