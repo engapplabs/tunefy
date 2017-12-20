@@ -39,15 +39,6 @@ class MainController : Initializable {
     lateinit var closeUserSettingsNode: MaterialDesignIconView
 
     @FXML
-    lateinit var shuffleTuneButton: MaterialDesignIconView
-
-    @FXML
-    lateinit var prevTuneButton: MaterialDesignIconView
-
-    @FXML
-    lateinit var tuneImageView: ImageView
-
-    @FXML
     lateinit var tunesListNode: AnchorPane
 
     @FXML
@@ -71,8 +62,11 @@ class MainController : Initializable {
     @FXML
     fun handleTunePlaying(event: MouseEvent) {
         println("HEHE")
-        if(event.source == shuffleTuneButton) println("haca")
+        if(event.source == playPauseButton) println("VCA")
     }
+
+    @FXML
+    lateinit var playPauseButton: MaterialDesignIconView
 
     /**
      * It handles close situations in app, such as
@@ -89,9 +83,6 @@ class MainController : Initializable {
             accountSettingsNode.isVisible = false
         else if(event.source == closeUserSettingsNode)
             userSettingsNode.isVisible = false
-        if(event.source == bluetooth) println("HHH")
-        if(event.source == shuffleTuneButton) println("SHUFEL")
-        if(event.source == prevTuneButton) println("OOI")
     }
 
     fun createResourceFile(resourceAsBytes: ByteArray, resourceName: String) {
