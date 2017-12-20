@@ -130,11 +130,12 @@ class MainController : Initializable {
                 val tuneResource = tune.musicResource
                 val tuneFile = SerializationUtils.deserialize<File>(tuneResource)
                 //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
-                  //      "chegou.mp3")
+                //      "chegou.mp3")
 
                 val media = Media(tuneFile.toURI().toURL().toString())
                 val mediaPlayer = MediaPlayer(media)
                 mediaPlayer.play()
+                //TODO SEE mp3handling project
             }
         };
 
