@@ -13,6 +13,7 @@ import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import javafx.fxml.Initializable
 import javafx.scene.control.Label
+import javafx.scene.control.TextField
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.input.MouseEvent
@@ -20,6 +21,7 @@ import javafx.scene.layout.AnchorPane
 import javafx.scene.media.Media
 import javafx.scene.media.MediaPlayer
 import javafx.scene.paint.Material
+import org.controlsfx.control.textfield.TextFields
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
@@ -28,6 +30,9 @@ import java.nio.file.Files
 import java.util.*
 
 class MainController : Initializable {
+
+    @FXML
+    lateinit var searchTuneField: TextField
 
     @FXML
     lateinit var closeAppButton: MaterialDesignIconView
@@ -71,8 +76,17 @@ class MainController : Initializable {
     @FXML
     lateinit var tuneNameLabel: Label
 
+    @FXML
+    lateinit var searchTune: MaterialDesignIconView
+
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("Initialized")
+        TextFields.bindAutoCompletion(searchTuneField, arrayListOf("Arctic Monkeys", "The Beatles"))
+    }
+
+    @FXML
+    fun searchTuneEvent(event: MouseEvent) {
+        println("searching tune")
     }
 
     /**
