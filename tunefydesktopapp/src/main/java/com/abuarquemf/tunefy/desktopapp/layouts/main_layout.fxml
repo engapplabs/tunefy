@@ -14,7 +14,7 @@
    <children>
       <AnchorPane fx:id="mainNode" layoutX="355.0" layoutY="2.0" prefHeight="609.0" prefWidth="360.0" style="-fx-background-color: #5AB0E2; -fx-background-radius: 0.55em;">
          <children>
-            <Pane prefHeight="49.0" prefWidth="360.0" styleClass="linear-grad-to-top" stylesheets="@../stylesheets/gradient.css">
+            <Pane prefHeight="49.0" prefWidth="371.0" styleClass="linear-grad-to-top" stylesheets="@../stylesheets/gradient.css">
                <children>
                   <Label layoutX="145.0" layoutY="14.0" prefHeight="24.0" prefWidth="169.0" text="Tunefy" textFill="#f2e9e9">
                      <font>
@@ -54,7 +54,7 @@
                   <MaterialDesignIconView fx:id="closeUserSettingsNode" fill="#f5f3f3" glyphName="CLOSE" layoutX="295.0" layoutY="26.0" onMouseClicked="#closeApp" size="20" />
                </children>
             </Pane>
-            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
+            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="logintest.Main" textFill="#f2e9e9">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
@@ -84,7 +84,7 @@
                   <MaterialDesignIconView fx:id="closeTunesListNode" fill="#f5f3f3" glyphName="CLOSE" layoutX="295.0" layoutY="26.0" onMouseClicked="#closeApp" size="20" />
                </children>
             </Pane>
-            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="Main" textFill="#f2e9e9">
+            <Label layoutX="12.0" layoutY="107.0" prefHeight="24.0" prefWidth="58.0" text="logintest.Main" textFill="#f2e9e9">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>
