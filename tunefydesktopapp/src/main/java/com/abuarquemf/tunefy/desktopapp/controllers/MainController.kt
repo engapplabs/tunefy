@@ -3,6 +3,7 @@ package com.abuarquemf.tunefy.desktopapp.controllers
 import com.abuarquemf.tunefy.desktopapp.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.desktopapp.models.Music
 import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils
+import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils.deserialize
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
@@ -22,12 +23,14 @@ import javafx.scene.media.Media
 import javafx.scene.media.MediaPlayer
 import javafx.scene.paint.Material
 import org.controlsfx.control.textfield.TextFields
+import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 import java.nio.file.Files
 import java.util.*
+import javax.imageio.ImageIO
 
 class MainController : Initializable {
 
@@ -97,7 +100,7 @@ class MainController : Initializable {
     @FXML
     fun handleTunePlaying(event: MouseEvent) {
         when(event.source) {
-            playPauseButton -> downloadTune()
+            playPauseButton -> println("play/pause")
             nextTuneButton -> println("next")
             prevTuneButton -> println("Prev")
             shuffleTuneButton -> println("shuffle")
@@ -139,7 +142,7 @@ class MainController : Initializable {
 
             override fun call(): Music {
                 val echo =  RestHandler.getInstance()
-                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513804858)
+                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513811175)
                 return Gson().fromJson<Music>(echo, object: TypeToken<Music>(){}.type)
             }
         }
@@ -149,16 +152,16 @@ class MainController : Initializable {
                 val tune = task.value
                 println(tune)
                 val tuneResource = tune.musicResource
-                val tuneFile = SerializationUtils.deserialize<File>(tuneResource)
-                val tuneImge = SerializationUtils.deserialize<File>(tune.imageResource)
-                tuneImage.image = Image(tuneImge.toURI().toURL().toString())
+                val tuneFile = deserialize<File>(tuneResource)
+                val tuneImge = deserialize<File>(tune.imageResource)
+                //tuneImage.image = Image(ImageIO.read(ByteArrayInputStream(Files.readAllBytes(tuneImge.toPath()))))
                 tuneNameLabel.text = tune.name
                 //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
                 //      "chegou.mp3")
 
-                val media = Media(tuneFile.toURI().toURL().toString())
-                val mediaPlayer = MediaPlayer(media)
-                mediaPlayer.play()
+                //val media = Media(tuneFile.toURI().toURL().toString())
+                //val mediaPlayer = MediaPlayer(media)
+                //mediaPlayer.play()
                 //TODO SEE mp3handling project
             }
         };
