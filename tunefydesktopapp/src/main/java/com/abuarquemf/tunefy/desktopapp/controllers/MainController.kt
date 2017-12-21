@@ -2,7 +2,6 @@ package com.abuarquemf.tunefy.desktopapp.controllers
 
 import com.abuarquemf.tunefy.desktopapp.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.desktopapp.models.Music
-import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils
 import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils.deserialize
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -14,23 +13,20 @@ import javafx.concurrent.WorkerStateEvent
 import javafx.event.EventHandler
 import javafx.fxml.Initializable
 import javafx.scene.control.Label
+import javafx.scene.control.ListView
 import javafx.scene.control.TextField
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.image.ImageViewBuilder
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.AnchorPane
-import javafx.scene.media.Media
-import javafx.scene.media.MediaPlayer
-import javafx.scene.paint.Material
 import org.controlsfx.control.textfield.TextFields
-import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
 import java.nio.file.Files
 import java.util.*
-import javax.imageio.ImageIO
 
 class MainController : Initializable {
 
@@ -82,6 +78,9 @@ class MainController : Initializable {
     @FXML
     lateinit var searchTune: MaterialDesignIconView
 
+    @FXML
+    lateinit var changeablePane: AnchorPane
+
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("Initialized")
         TextFields.bindAutoCompletion(searchTuneField, arrayListOf("Arctic Monkeys", "The Beatles"))
@@ -90,6 +89,7 @@ class MainController : Initializable {
     @FXML
     fun searchTuneEvent(event: MouseEvent) {
         println("searching tune")
+        //changeablePane.children.add(ListView<String>())
     }
 
     /**
@@ -100,7 +100,7 @@ class MainController : Initializable {
     @FXML
     fun handleTunePlaying(event: MouseEvent) {
         when(event.source) {
-            playPauseButton -> println("play/pause")
+            playPauseButton -> downloadTune() //println("play/pause")
             nextTuneButton -> println("next")
             prevTuneButton -> println("Prev")
             shuffleTuneButton -> println("shuffle")
@@ -142,7 +142,7 @@ class MainController : Initializable {
 
             override fun call(): Music {
                 val echo =  RestHandler.getInstance()
-                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513811175)
+                        .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513811858)
                 return Gson().fromJson<Music>(echo, object: TypeToken<Music>(){}.type)
             }
         }
@@ -153,11 +153,11 @@ class MainController : Initializable {
                 println(tune)
                 val tuneResource = tune.musicResource
                 val tuneFile = deserialize<File>(tuneResource)
-                val tuneImge = deserialize<File>(tune.imageResource)
-                //tuneImage.image = Image(ImageIO.read(ByteArrayInputStream(Files.readAllBytes(tuneImge.toPath()))))
+                //val tuneImge = deserialize<File>(tune.imageResource)
+                tuneImage.image = Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/ACDC_Back_in_Black.png/220px-ACDC_Back_in_Black.png")
                 tuneNameLabel.text = tune.name
                 //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
-                //      "chegou.mp3")
+                  //    "chegou.mp3")
 
                 //val media = Media(tuneFile.toURI().toURL().toString())
                 //val mediaPlayer = MediaPlayer(media)
