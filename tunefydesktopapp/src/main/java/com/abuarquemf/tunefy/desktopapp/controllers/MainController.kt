@@ -1,11 +1,15 @@
 package com.abuarquemf.tunefy.desktopapp.controllers
 
 import com.abuarquemf.tunefy.desktopapp.connectionhandler.RestHandler
+import com.abuarquemf.tunefy.desktopapp.layoutchanger.TuneListCell
 import com.abuarquemf.tunefy.desktopapp.models.Music
 import com.abuarquemf.tunefy.desktopapp.streamhandler.SerializationUtils.deserialize
+import com.abuarquemf.tunefy.desktopapp.streamhandler.StreamUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import javafx.concurrent.Task
 import javafx.event.Event
 import javafx.fxml.FXML
@@ -20,6 +24,8 @@ import javafx.scene.image.ImageView
 import javafx.scene.image.ImageViewBuilder
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.AnchorPane
+import javafx.scene.media.Media
+import javafx.scene.media.MediaPlayer
 import org.controlsfx.control.textfield.TextFields
 import java.io.IOException
 import java.io.File
@@ -83,12 +89,38 @@ class MainController : Initializable {
 
     override fun initialize(location: URL?, resources: ResourceBundle?) {
         println("Initialized")
+        //SETTING UP AUTO COMPLETE LIST
         TextFields.bindAutoCompletion(searchTuneField, arrayListOf("Arctic Monkeys", "The Beatles"))
+
+        //SETTING UP TUNES LIST VIEW
+        var echo =  RestHandler.getInstance()
+                .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513811858)
+        var tune = Gson().fromJson<Music>(echo, object: TypeToken<Music>(){}.type)
+
+        var tunes = ArrayList<Music>()
+        tunes.add(tune)
+
+        echo =  RestHandler.getInstance()
+                .doGet("http://localhost:8099/tunefymusicapi/music/" + 1513804858)
+        tune = Gson().fromJson<Music>(echo, object: TypeToken<Music>(){}.type)
+
+        //tunes = ArrayList<Music>()
+        tunes.add(tune)
+
+        var listView = ListView<Music>()
+        listView.setMinSize(344.0, 100.0)
+        var xObjectObservableList = FXCollections.observableList(tunes)
+
+        listView.setItems(xObjectObservableList)
+        listView.setCellFactory { p -> TuneListCell(tunes) }
+
+        changeablePane.children.add(listView)
     }
 
     @FXML
     fun searchTuneEvent(event: MouseEvent) {
         println("searching tune")
+
         //changeablePane.children.add(ListView<String>())
     }
 
@@ -153,13 +185,18 @@ class MainController : Initializable {
                 println(tune)
                 val tuneResource = tune.musicResource
                 val tuneFile = deserialize<File>(tuneResource)
+
+                //val tuneAsBytes = StreamUtils.getBytesFromFile(tuneFile)
+
+                //val usefulTuneResource = StreamUtils.getTempFile(tuneAsBytes, "this_tune",".mp3")
+
                 //val tuneImge = deserialize<File>(tune.imageResource)
                 tuneImage.image = Image("https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/ACDC_Back_in_Black.png/220px-ACDC_Back_in_Black.png")
                 tuneNameLabel.text = tune.name
                 //createResourceFile(Files.readAllBytes(tuneFile.toPath()),
                   //    "chegou.mp3")
 
-                //val media = Media(tuneFile.toURI().toURL().toString())
+                //val media = Media(usefulTuneResource!!.toURI().toURL().toString())
                 //val mediaPlayer = MediaPlayer(media)
                 //mediaPlayer.play()
                 //TODO SEE mp3handling project
