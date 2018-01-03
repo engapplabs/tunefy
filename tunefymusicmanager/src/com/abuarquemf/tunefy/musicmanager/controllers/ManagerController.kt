@@ -4,6 +4,7 @@ import com.abuarquemf.tunefy.musicmanager.Main
 import com.abuarquemf.tunefy.musicmanager.configuration.URLhandler
 import com.abuarquemf.tunefy.musicmanager.connectionhandler.RestHandler
 import com.abuarquemf.tunefy.musicmanager.models.Music
+import com.abuarquemf.tunefy.musicmanager.streamhandler.ResourceStreamUtil
 import com.abuarquemf.tunefy.musicmanager.streamhandler.SerializationUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -21,6 +22,7 @@ import javafx.scene.text.Text
 import javafx.stage.FileChooser
 import javafx.stage.Stage
 import java.io.File
+import java.nio.file.Files
 
 class ManagerController {
 
@@ -145,10 +147,13 @@ class ManagerController {
     @FXML
     fun sendTuneAction(event: Event) {
         if(isAvaiableToSendTune) {
+            var tuneAsBytes = choosenTune!!.absolutePath
+            println("PATH: " + tuneAsBytes)
+            var handler = ResourceStreamUtil()
             val response = RestHandler.getInstance()
                     .doPost(URLhandler.urlPOST(),
                             Music(musicName!!, bandName!!,
-                                    SerializationUtils.serialize(choosenTune),
+                                    handler.compressResource(tuneAsBytes),
                                     SerializationUtils.serialize(choosenImage)))
             defaultInfoLabel.text = "Added new tune"
             val responseTune = Gson().fromJson<Music>(
